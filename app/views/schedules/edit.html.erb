@@ -1,0 +1,41 @@
+<h3>編集</h3>
+
+<% if flash.now[:alert] %>
+  <p class="alert"><%= flash.now[:alert] %></p>
+<% end %>
+
+<%= form_with model: @schedule do |f| %>
+  <table>
+    <tr>
+      <th><%= f.label :title ,"タイトル" %></th>
+      <td><%= f.text_field :title %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :startdate ,"開始日" %></th>
+      <td><%= f.date_select :startdate %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :enddate ,"終了日" %></th>
+      <td><%= f.date_select :enddate %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :allday ,"終日の場合はチェックを入れます" %></th>
+      <td><%= f.check_box :allday %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :memo ,"スケジュールメモ" %></th>
+      <td><%= f.text_area :memo %></td>
+    </tr>
+  </table>
+
+  <div>
+    <ul>
+      <li><%= f.submit "編集"%></li>
+      <li><%= link_to "一覧に戻る", :schedules %></li>
+    </ul>
+  </div>
+<% end %>
