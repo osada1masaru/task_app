@@ -1,0 +1,31 @@
+<h3>詳細</h3>
+
+<table>
+  <tr>
+    <th>開始日</th>
+    <td><%= @schedule.startdate %></td>
+  </tr>
+  <tr>
+    <th>終了日</th>
+    <td><%= @schedule.enddate %></td>
+  </tr>
+  <tr>
+    <th>終日</th>
+    <td><% if @schedule.allday == true %>
+          ○
+        <% else @schedule.allday == false %>
+
+        <% end %>
+    </td>
+  </tr>
+    <tr>
+    <th>メモ</th>
+    <td><%= @schedule.memo %></td>
+  </tr>
+</table>
+
+<div>
+  <ul>
+    <li><%= link_to "一覧に戻る", :schedules %></li>
+  </ul>
+</div>

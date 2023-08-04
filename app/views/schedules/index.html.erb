@@ -1,0 +1,55 @@
+<h3>予定一覧</h3>
+
+<p><%= link_to "新規登録",:new_schedule %></p>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>タイトル</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>終日</th>
+        <th>更新日時</th>
+        <th>詳細</th>
+        <th>編集</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @schedules.each do |schedule| %>
+        <tr>
+          <td><%= schedule.id %></td>
+          <td><%= schedule.title %></td>
+          <td><%= schedule.startdate.strftime("%Y/%m/%d") %></td>
+          <td><%= schedule.enddate.strftime("%Y/%m/%d") %></td>
+          <td><% if schedule.allday == true %>
+            ○
+          <% else schedule.allday == false %>
+
+          <% end %>
+          </td>
+          <td><%= schedule.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+          <td>
+          <%= link_to "詳細", schedule %>
+          </td>
+          <td>
+          <%= link_to "編集", [:edit,schedule] %>
+          </td>
+          <td>
+          <%= button_to "削除",schedule,method: :delete,data:{turbo_confirm:"本当に削除しますか?"} %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<div>
+  <p>予定合計<%= @schedules_total %></p>
+  <p>本日の日付 <%= Time.now.strftime("%Y/%m/%d")%></p>
+</div>
